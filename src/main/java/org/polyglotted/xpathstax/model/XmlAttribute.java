@@ -7,16 +7,14 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.annotation.concurrent.ThreadSafe;
+import javax.xml.stream.XMLStreamReader;
 
-import org.codehaus.stax2.XMLStreamReader2;
 import org.polyglotted.xpathstax.data.Value;
 
 import com.google.common.base.Function;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 
-@ThreadSafe
 public class XmlAttribute {
 
     private static final String NP_SPACE = String.valueOf((char) 22);
@@ -41,7 +39,7 @@ public class XmlAttribute {
         return attr;
     }
 
-    public static XmlAttribute from(XMLStreamReader2 xmlr) {
+    public static XmlAttribute from(XMLStreamReader xmlr) {
         XmlAttribute attr = new XmlAttribute();
 
         for (int i = 0; i < xmlr.getAttributeCount(); i++) {

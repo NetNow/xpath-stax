@@ -6,8 +6,6 @@ import static org.polyglotted.xpathstax.model.XPathRequest.SLASH;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.concurrent.NotThreadSafe;
-
 import org.polyglotted.xpathstax.api.AttributeProvider;
 import org.polyglotted.xpathstax.api.NodeHandler;
 import org.polyglotted.xpathstax.model.XmlAttribute;
@@ -15,7 +13,6 @@ import org.polyglotted.xpathstax.model.XmlNode;
 
 import com.google.common.collect.Maps;
 
-@NotThreadSafe
 class NodeContext implements AttributeProvider {
 
     private final Map<String, NodeData> dataMap = Maps.newHashMap();

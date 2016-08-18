@@ -8,7 +8,6 @@ import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.Stack;
 
-import javax.annotation.concurrent.NotThreadSafe;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlEnum;
@@ -20,7 +19,7 @@ import org.polyglotted.xpathstax.model.XmlNode;
 
 import com.google.common.annotations.VisibleForTesting;
 
-@NotThreadSafe
+
 class XmlBinderContext<T> {
 
     private final Class<T> rootClass;

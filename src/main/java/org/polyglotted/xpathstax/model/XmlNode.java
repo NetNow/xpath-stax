@@ -2,11 +2,8 @@ package org.polyglotted.xpathstax.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 import org.polyglotted.xpathstax.data.Value;
 
-@ThreadSafe
 public class XmlNode {
 
     private final String path;

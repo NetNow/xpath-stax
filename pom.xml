@@ -7,7 +7,7 @@
     </parent>
     <groupId>org.polyglotted</groupId>
     <artifactId>xpath-stax</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Xpath StAX parser</name>
     <description>Xpath evaluator on StAX parser</description>
@@ -39,8 +39,8 @@
         <logback.version>0.9.29</logback.version>
         <slf4j.version>1.6.1</slf4j.version>
         <junit.version>4.10</junit.version>
-        <guava.version>12.0</guava.version>
-        <woodstox.version>4.1.3</woodstox.version>
+        <guava.version>18.0</guava.version>
+        <woodstox.version>4.4.1</woodstox.version>
     </properties>
 
     <dependencies>
@@ -160,45 +160,6 @@
                         <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <id>copy-gpgs</id>
-                        <phase>package</phase>
-                        <configuration>
-                            <target>
-                                <copy todir="${project.build.directory}/gpglocal">
-                                    <fileset dir="/private/polyglotted/.gpg" includes="*/**" />
-                                </copy>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <configuration> <!-- hack for cloudbees -->
-                            <defaultKeyring>false</defaultKeyring>
-                            <homedir>${project.build.directory}/gpglocal</homedir>
-                        </configuration>
-                        <goals>
-                            <goal>sign</goal>
                         </goals>
                     </execution>
                 </executions>

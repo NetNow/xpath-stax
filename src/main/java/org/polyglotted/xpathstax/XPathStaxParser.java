@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.events.XMLEvent;
 
 import org.codehaus.stax2.XMLInputFactory2;
-import org.codehaus.stax2.XMLStreamReader2;
 import org.polyglotted.xpathstax.api.NodeHandler;
 import org.polyglotted.xpathstax.bind.NodeConverter;
 import org.polyglotted.xpathstax.model.XPathRequest;
@@ -23,7 +24,7 @@ import com.google.common.io.Closeables;
 
 public class XPathStaxParser {
 
-    private static final XMLInputFactory2 factory = createFactory();
+    private static final XMLInputFactory factory = createFactory();
 
     private final Map<XPathRequest, NodeHandler> handlersMap = Maps.newConcurrentMap();
 
@@ -38,7 +39,7 @@ public class XPathStaxParser {
     public void parse(InputStream inputStream) {
         final NodeContext context = new NodeContext();
         try {
-            XMLStreamReader2 xmlr = (XMLStreamReader2) factory.createXMLStreamReader(inputStream);
+            XMLStreamReader xmlr = (XMLStreamReader) factory.createXMLStreamReader(inputStream);
             String curElement = "";
             int eventType = xmlr.getEventType();
             while (xmlr.hasNext()) {
@@ -69,7 +70,7 @@ public class XPathStaxParser {
         }
     }
 
-    private void processStartElement(XMLStreamReader2 xmlr, NodeContext context, String curElement) {
+    private void processStartElement(XMLStreamReader xmlr, NodeContext context, String curElement) {
         XmlAttribute attribute = XmlAttribute.from(xmlr);
 
         List<NodeHandler> handlers = Lists.newArrayList();
@@ -84,19 +85,19 @@ public class XPathStaxParser {
         context.addHandlers(curElement, attribute, handlers);
     }
 
-    private void processEndElement(XMLStreamReader2 xmlr, NodeContext context, String curElement) {
+    private void processEndElement(XMLStreamReader xmlr, NodeContext context, String curElement) {
         if (!SLASH.equals(curElement)) {
             context.sendUpdates(curElement);
         }
     }
 
-    private static String getName(XMLStreamReader2 xmlr) {
+    private static String getName(XMLStreamReader xmlr) {
         return xmlr.getName().toString();
     }
 
-    private static XMLInputFactory2 createFactory() {
-        XMLInputFactory2 xmlif = (XMLInputFactory2) XMLInputFactory2.newInstance();
-        xmlif.configureForConvenience();
+    private static XMLInputFactory createFactory() {
+        XMLInputFactory xmlif = (XMLInputFactory) XMLInputFactory2.newInstance();
+      //  xmlif.configureForConvenience();
         return xmlif;
     }
 }

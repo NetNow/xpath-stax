@@ -7,14 +7,11 @@ import static com.google.common.collect.Maps.newHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 import org.polyglotted.xpathstax.api.AttributeProvider;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 
-@ThreadSafe
 public class XPathRequest {
 
     public static final String SLASH = "/";
