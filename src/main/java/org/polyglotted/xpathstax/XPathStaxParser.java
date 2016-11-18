@@ -24,16 +24,24 @@ import com.google.common.io.Closeables;
 
 public class XPathStaxParser {
 
-    private static final XMLInputFactory factory = createFactory();
+    private XMLInputFactory factory;
 
     private final Map<XPathRequest, NodeHandler> handlersMap = Maps.newConcurrentMap();
 
+    public XPathStaxParser() {
+        this.factory = createFactory();
+    }
+    
     public void addHandler(XPathRequest request, NodeHandler handler) {
         handlersMap.put(checkNotNull(request), checkNotNull(handler));
     }
 
     public <T> void addHandler(NodeConverter<T> converter) {
         addHandler(converter.getRequest(), converter);
+    }
+    
+    public void setXmlFactoryProperty(String key, Object val) {
+        factory.setProperty(key, val);
     }
 
     public void parse(InputStream inputStream) {
@@ -95,8 +103,8 @@ public class XPathStaxParser {
         return xmlr.getName().toString();
     }
 
-    private static XMLInputFactory createFactory() {
-        XMLInputFactory xmlif = (XMLInputFactory) XMLInputFactory2.newInstance();
+    private XMLInputFactory createFactory() {
+        XMLInputFactory xmlif = (XMLInputFactory) XMLInputFactory2.newInstance();        
       //  xmlif.configureForConvenience();
         return xmlif;
     }
