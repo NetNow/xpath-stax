@@ -8,7 +8,7 @@
 	</parent>
 	<groupId>com.myitops.external.org.polyglotted</groupId>
 	<artifactId>com.myitops.external.xpath-stax</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.1.0</version>
 	<packaging>bundle</packaging>
 	<name>Xpath StAX parser</name>
 	<description>Xpath evaluator on StAX parser</description>
