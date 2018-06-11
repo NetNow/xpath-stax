@@ -6,8 +6,8 @@
 		<artifactId>oss-parent</artifactId>
 		<version>7</version>
 	</parent>
-	<groupId>org.polyglotted</groupId>
-	<artifactId>xpath-stax</artifactId>
+	<groupId>com.myitops.external.org.polyglotted</groupId>
+	<artifactId>com.myitops.external.xpath-stax</artifactId>
 	<version>1.0.3-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	<name>Xpath StAX parser</name>
